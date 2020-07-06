@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)https://cdpn.io/a-trost/fullpage/BaoZgaK -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+  <meta name="apple-mobile-web-app-title" content="CodePen">
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+  <link rel="stylesheet" href="./style.css">
+  <title>CodePen - Lee Jung Hoo</title>
+  <link rel="stylesheet" href="./normalize.min.css">
+  <style>
+    font-face {
+      font-family: "Public Sans Roman";
+      src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/85648/PublicSans-Roman-VF.ttf");
+    }
+
+    :root {
+      --dark-purple: hsl(285, 86%, 4%);
+      --neon-blue: hsl(190, 100%, 75%);
+      --neon-pink: hsl(303, 100%, 73%);
+      --size: 10;
+      --unit: calc((var(--size) / 100) * 1vmin);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Public Sans Roman";
+      font-variation-settings: "wght" 1000;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--dark-purple);
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+    .textcolorred{
+			-webkit-text-fill-color: red;
+			-webkit-text-stroke-color: var(--neon-pink);
+		}
+
+	.textcoloryellow{
+			-webkit-text-fill-color: yellow;
+			-webkit-text-stroke-color: var(--neon-pink);
+		}
+
+		.textcolorgreen{
+			-webkit-text-fill-color: green;
+			-webkit-text-stroke-color: var(--neon-pink);
+		}
+
+		.textcolorcyan{
+			-webkit-text-fill-color: cyan;
+			-webkit-text-stroke-color: var(--neon-pink);
+		}
+
+		.textcolorblue{
+			-webkit-text-fill-color: blue;
+			-webkit-text-stroke-color: var(--neon-pink);
+		}
+
+		.textcolormagenta{
+			-webkit-text-fill-color: magenta;
+			-webkit-text-stroke-color: var(--neon-pink);
+		}
+
+		.textcolorwhite{
+			-webkit-text-fill-color: white;
+			-webkit-text-stroke-color: var(--neon-pink);
+		}
+
+		.textcolorblack{
+			-webkit-text-fill-color: dark-purple;
+			-webkit-text-stroke-color: var(--dark-purple);
+		}
+
+
+
+    .text {
+      position: absolute;
+      left: calc(100vw / 4);
+      right: calc(100vw / 4);
+      -webkit-transform: rotate(-45deg) skew(15deg, 15deg);
+      transform: rotate(-45deg) skew(15deg, 15deg);
+      width: calc(500 * var(--unit));
+      height: calc(600 * var(--unit));
+      font-size: calc(160 * var(--unit));
+      -webkit-text-fill-color: neon-pink;
+      -webkit-text-stroke-width: 4px;
+      -webkit-text-stroke-color: var(--neon-pink);
+      line-height: calc(160 * var(--unit));
+      padding: calc(60 * var(--unit));
+    }
+
+    .left-side,
+    .bottom-side {
+      position: absolute;
+      background: none transparent;
+      width: 0px;
+      height: 0px;
+    }
+
+    .left-side {
+      left: 0;
+      bottom: 0;
+      height: calc(200 * var(--unit));
+      width: calc(5 * var(--unit));
+    }
+
+    .bottom-side {
+      bottom: 0;
+      left: 0;
+      width: calc(200 * var(--unit));
+      height: calc(5 * var(--unit));
+    }
+
+    .text1 {
+      top: 0px;
+      -webkit-text-fill-color: transparent;
+      -webkit-filter: blur(0.5px);
+      filter: blur(0.5px);
+      background-blend-mode: screen;
+    }
+
+    .text2 {
+      top: calc(1 * var(--unit));
+      background-blend-mode: screen;
+      -webkit-filter: blur(0.5px);
+      filter: blur(0.5px);
+    }
+
+    .text3 {
+      top: calc(10 * var(--unit));
+      opacity: 1;
+      -webkit-filter: blur(1px);
+      filter: blur(1px);
+    }
+
+    .text4 {
+      top: calc(20 * var(--unit));
+      opacity: 0.8;
+      -webkit-filter: blur(1.5px);
+      filter: blur(1.5px);
+    }
+
+    .text5 {
+      top: calc(30 * var(--unit));
+      opacity: 0.6;
+      -webkit-filter: blur(2px);
+      filter: blur(2px);
+    }
+
+    .text6 {
+      top: calc(40 * var(--unit));
+      opacity: 0.4;
+      -webkit-filter: blur(2.5px);
+      filter: blur(2.5px);
+    }
+
+    .text7 {
+      top: calc(50 * var(--unit));
+      opacity: 0.2;
+      -webkit-filter: blur(3px);
+      filter: blur(3px);
+    }
+
+    .word.in,
+    .word.too,
+    .word.deep {
+      opacity: 0;
+    }
+  </style>
+
+  <div class="right">
+    <button id="start_button" onclick="startButton(event)">
+      <img id="start_img" src="mic.gif" alt="Start"></button>
+    </div>
+
+    <div id="results">
+      <span id="final_span" class="final"></span>
+      <span id="interim_span" class="interim"></span>
+      <p> 
+      </div>
+
+      <div id="cbox">
+      </div>
+
+      <span id="photo">
+        <img src="doowon.png" align="right">
+      </span>
+
+      <div id="text">
+        음성인식 <span style="color: red;">L</span><span style="color: green;">E</span><span style="color: blue;">D</span> 전구
+      </div>
+
+      <div id="div_language">
+        <select id="select_language" onchange="updateCountry()"></select>
+        &nbsp;&nbsp;
+        <select id="select_dialect"></select>
+      </div>
+
+
+      <script>
+        window.console = window.console || function(t) {};
+      </script>
+      <script>
+        if (document.location.search.match(/type=embed/gi)) {
+          window.parent.postMessage("resize", "*");
+        }
+      </script>
+      <script>
+        var langs =
+        [
+        ['한국어', ['ko-KR']]
+        ];
+
+        var final_transcript = '';
+
+        if (!('webkitSpeechRecognition' in window)) {} 
+// 크롬에서 webkitSpeechRecognition를 지원한다
+else {
+  var recognition = new webkitSpeechRecognition();
+  recognition.continuous = true; //계속 인식 가능하게 하는거.
+
+  recognition.onstart = function() {
+    start_img.src = 'mic-animate.gif';
+  };
+// 마이크 버튼 깜빡이는 이미지 나오는거.
+
+recognition.onresult = function(event) {
+	for (var i = event.resultIndex; i < event.results.length; ++i) {
+		if (event.results[i].isFinal) {
+			final_transcript += event.results[i][0].transcript;
+		} 
+	}
+
+	final_span.innerHTML = linebreak(final_transcript);
+
+	var name_by_id = document.getElementById("final_span").innerHTML;
+
+	if (name_by_id.indexOf("빨간색")!== -1){
+		final_transcript="";
+		document.getElementById("TESTGO1").className = "text text1 textcolorred";
+		document.getElementById("TESTGO2").className = "text text2 textcolorred";
+		document.getElementById("TESTGO3").className = "text text3 textcolorred";
+		document.getElementById("TESTGO4").className = "text text4 textcolorred";
+		document.getElementById("TESTGO5").className = "text text5 textcolorred";
+		document.getElementById("TESTGO6").className = "text text6 textcolorred";
+		document.getElementById("TESTGO7").className = "text text7 textcolorred";
+
+		location.href = "http://192.168.137.151/red";  
+	}
+
+	if (name_by_id.indexOf("노란색")!== -1){
+		final_transcript="";
+		document.getElementById("TESTGO1").className = "text text1 textcoloryellow";
+		document.getElementById("TESTGO2").className = "text text2 textcoloryellow";
+		document.getElementById("TESTGO3").className = "text text3 textcoloryellow";
+		document.getElementById("TESTGO4").className = "text text4 textcoloryellow";
+		document.getElementById("TESTGO5").className = "text text5 textcoloryellow";
+		document.getElementById("TESTGO6").className = "text text6 textcoloryellow";
+		document.getElementById("TESTGO7").className = "text text7 textcoloryellow";
+
+        location.href = "http://192.168.137.151/yellow";
+    }
+
+    if (name_by_id.indexOf("초록색")!== -1){
+	    final_transcript="";
+	    document.getElementById("TESTGO1").className = "text text1 textcolorgreen";
+	    document.getElementById("TESTGO2").className = "text text2 textcolorgreen";
+	    document.getElementById("TESTGO3").className = "text text3 textcolorgreen";
+	    document.getElementById("TESTGO4").className = "text text4 textcolorgreen";
+	    document.getElementById("TESTGO5").className = "text text5 textcolorgreen";
+	    document.getElementById("TESTGO6").className = "text text6 textcolorgreen";
+	    document.getElementById("TESTGO7").className = "text text7 textcolorgreen";
+
+        location.href = "http://192.168.137.151/green";
+    }
+
+    if (name_by_id.indexOf("하늘색")!== -1){
+	    final_transcript="";
+	    document.getElementById("TESTGO1").className = "text text1 textcolorcyan";
+	    document.getElementById("TESTGO2").className = "text text2 textcolorcyan";
+	    document.getElementById("TESTGO3").className = "text text3 textcolorcyan";
+	    document.getElementById("TESTGO4").className = "text text4 textcolorcyan";
+	    document.getElementById("TESTGO5").className = "text text5 textcolorcyan";
+	    document.getElementById("TESTGO6").className = "text text6 textcolorcyan";
+	    document.getElementById("TESTGO7").className = "text text7 textcolorcyan";
+
+        location.href = "http://192.168.137.151/cyan";
+}
+
+    if (name_by_id.indexOf("파란색")!== -1)    {
+	    final_transcript="";
+	    document.getElementById("TESTGO1").className = "text text1 textcolorblue";
+	    document.getElementById("TESTGO2").className = "text text2 textcolorblue";
+	    document.getElementById("TESTGO3").className = "text text3 textcolorblue";
+	    document.getElementById("TESTGO4").className = "text text4 textcolorblue";
+	    document.getElementById("TESTGO5").className = "text text5 textcolorblue";
+	    document.getElementById("TESTGO6").className = "text text6 textcolorblue";
+	    document.getElementById("TESTGO7").className = "text text7 textcolorblue";
+
+        location.href = "http://192.168.137.151/blue";
+}
+
+    if (name_by_id.indexOf("자주색")!== -1)    {
+	    final_transcript="";
+	    document.getElementById("TESTGO1").className = "text text1 textcolormagenta";
+	    document.getElementById("TESTGO2").className = "text text2 textcolormagenta";
+	    document.getElementById("TESTGO3").className = "text text3 textcolormagenta";
+	    document.getElementById("TESTGO4").className = "text text4 textcolormagenta";
+	    document.getElementById("TESTGO5").className = "text text5 textcolormagenta";
+	    document.getElementById("TESTGO6").className = "text text6 textcolormagenta";
+	    document.getElementById("TESTGO7").className = "text text7 textcolormagenta";
+
+        location.href = "http://192.168.137.151/magenta";
+}
+
+    if (name_by_id.indexOf("흰색")!== -1)   {
+	    final_transcript="";
+	    document.getElementById("TESTGO1").className = "text text1 textcolorwhite";
+	    document.getElementById("TESTGO2").className = "text text2 textcolorwhite";
+	    document.getElementById("TESTGO3").className = "text text3 textcolorwhite";
+	    document.getElementById("TESTGO4").className = "text text4 textcolorwhite";
+	    document.getElementById("TESTGO5").className = "text text5 textcolorwhite";
+	    document.getElementById("TESTGO6").className = "text text6 textcolorwhite";
+	    document.getElementById("TESTGO7").className = "text text7 textcolorwhite";
+
+        location.href = "http://192.168.137.151/white";
+}
+
+    if (name_by_id.indexOf("소등")!== -1)   {
+	    final_transcript="";
+	    document.getElementById("TESTGO1").className = "text text1 textcolorblack";
+	    document.getElementById("TESTGO2").className = "text text2 textcolorblack";
+	    document.getElementById("TESTGO3").className = "text text3 textcolorblack";
+	    document.getElementById("TESTGO4").className = "text text4 textcolorblack";
+	    document.getElementById("TESTGO5").className = "text text5 textcolorblack";
+	    document.getElementById("TESTGO6").className = "text text6 textcolorblack";
+	    document.getElementById("TESTGO7").className = "text text7 textcolorblack";
+
+	    location.href = "http://192.168.137.151/off";  
+}
+
+if (name_by_id.indexOf("커져라")!== -1)   {
+	final_transcript="";
+	location.href = "http://192.168.137.151/abbgo";  
+}
+
+if (name_by_id.indexOf("작아져라")!== -1)   {
+	final_transcript="";
+	location.href = "http://192.168.137.151/abbback";  
+}
+};
+}
+
+
+
+
+
+var two_line = /\n\n/g;
+var one_line = /\n/g;
+
+function linebreak(s) {
+	return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+} //여러줄 출력 될 시 <p> 태그, <br>태그로 변환
+
+function startButton(event) {
+	recognition.start();
+}
+</script>
+</head>
+<body translate="no">
+	<div class="container">
+		<div id="TESTGO1" class="text text1 textcolormagenta" style="transform: rotate(-30deg) skew(30.0001deg, 0deg) scale(1.0353, 0.8966); opacity: 1;">
+			<p class="word in" style="opacity: 0;">Lee</p>
+			<p class="word too" style="opacity: 0;">Jung</p>
+			<p class="word deep" style="opacity: 0;">Hoo</p>
+			<span class="left-side" style="background: rgb(128, 234, 255); height: 96.7811%;"></span>
+			<span class="bottom-side" style="background: rgb(128, 234, 255); width: 96.7811%;"></span>
+		</div>
+		<div id="TESTGO2" class="text text2 textcolormagenta" style="transform: rotate(-30deg) skew(30.0001deg, 0deg) scale(1.0353, 0.8966); opacity: 1;">
+			<p class="word in" style="opacity: 0;">Lee</p>
+			<p class="word too" style="opacity: 0;">Jung</p>
+			<p class="word deep" style="opacity: 0;">Hoo</p><span class="left-side" style="background: rgb(128, 234, 255); height: 96.7811%;"></span><span class="bottom-side" style="background: rgb(128, 234, 255); width: 96.7811%;"></span>
+		</div>
+		<div id="TESTGO3" class="text text3 textcolormagenta" style="transform: rotate(-30deg) skew(30.0001deg, 0deg) scale(1.0353, 0.8966); opacity: 1;">
+			<p class="word in" style="opacity: 0;">Lee</p>
+			<p class="word too" style="opacity: 0;">Jung</p>
+			<p class="word deep" style="opacity: 0;">Hoo</p><span class="left-side" style="background: rgb(128, 234, 255); height: 96.7811%;"></span><span class="bottom-side" style="background: rgb(128, 234, 255); width: 96.7811%;"></span>
+		</div>
+		<div id="TESTGO4" class="text text4 textcolormagenta" style="transform: rotate(-30deg) skew(30.0001deg, 0deg) scale(1.0353, 0.8966); opacity: 0.8;">
+			<p class="word in" style="opacity: 0;">Lee</p>
+			<p class="word too" style="opacity: 0;">Jung</p>
+			<p class="word deep" style="opacity: 0;">Hoo</p><span class="left-side" style="background: rgb(128, 234, 255); height: 96.7811%;"></span><span class="bottom-side" style="background: rgb(128, 234, 255); width: 96.7811%;"></span>
+		</div>
+		<div id="TESTGO5" class="text text5 textcolormagenta" style="transform: rotate(-30deg) skew(30.0001deg, 0deg) scale(1.0353, 0.8966); opacity: 0.6;">
+			<p class="word in" style="opacity: 0;">Lee</p>
+			<p class="word too" style="opacity: 0;">Jung</p>
+			<p class="word deep" style="opacity: 0;">Hoo</p><span class="left-side" style="background: rgb(128, 234, 255); height: 96.7811%;"></span><span class="bottom-side" style="background: rgb(128, 234, 255); width: 96.7811%;"></span>
+		</div>
+		<div id="TESTGO6" class="text text6 textcolormagenta" style="transform: rotate(-30deg) skew(30.0001deg, 0deg) scale(1.0353, 0.8966); opacity: 0.4;"> 
+			<p class="word in" style="opacity: 0;">Lee</p>
+			<p class="word too" style="opacity: 0;">Jung</p>
+			<p class="word deep" style="opacity: 0;">Hoo</p><span class="left-side" style="background: rgb(128, 234, 255); height: 96.7811%;"></span><span class="bottom-side" style="background: rgb(128, 234, 255); width: 96.7811%;"></span>
+		</div>
+		<div id="TESTGO7" class="text text7 textcolormagenta" style="transform: rotate(-30deg) skew(30.0001deg, 0deg) scale(1.0353, 0.8966); opacity: 0.2;"> 
+			<p class="word in" style="opacity: 0;">Lee</p>
+			<p class="word too" style="opacity: 0;">Jung</p>
+			<p class="word deep" style="opacity: 0;">Hoo</p><span class="left-side" style="background: rgb(128, 234, 255); height: 96.7811%;"></span><span class="bottom-side" style="background: rgb(128, 234, 255); width: 96.7811%;"></span>
+		</div>
+		<div id="TESTGO8" class="text text8 textcolormagenta" style="transform: rotate(-30deg) skew(30.0001deg, 0deg) scale(1.0353, 0.8966); opacity: 0;"> 
+			<p class="word in" style="opacity: 0;">Lee</p>
+			<p class="word too" style="opacity: 0;">Jung</p>
+			<p class="word deep" style="opacity: 0;">Hoo</p><span class="left-side" style="background: rgb(128, 234, 255); height: 96.7811%;"></span><span class="bottom-side" style="background: rgb(128, 234, 255); width: 96.7811%;"></span>
+	
+    </div>
+    <div class="container">
+        <div class="keys"><!--키 주소 및 이름-->
+            <div data-key="65" class="key">
+                <kbd>A</kbd>
+                <span class="sound">clap</span>
+            </div>
+
+            <div data-key="83" class="key">
+                <kbd>S</kbd>
+                <span class="sound">synth</span>
+            </div>
+
+            <div data-key="68" class="key">
+                <kbd>D</kbd>
+                <span class="sound">hat</span>
+            </div>
+
+            <div data-key="70" class="key">
+                <kbd>F</kbd>
+                <span class="sound">perc</span>
+            </div>
+
+            <div data-key="71" class="key">
+                <kbd>G</kbd>
+                <span class="sound">tom</span>
+            </div>
+
+            <div data-key="72" class="key">
+                <kbd>H</kbd>
+                <span class="sound">snare</span>
+            </div>
+
+            <div data-key="74" class="key">
+                <kbd>J</kbd>
+                <span class="sound">clock</span>
+            </div>
+
+            <div data-key="75" class="key">
+                <kbd>K</kbd>
+                <span class="sound">kick</span>
+            </div>
+
+            <div data-key="76" class="key">
+                <kbd>L</kbd>
+                <span class="sound">boom</span>
+            </div>
+        </div>
+    </div>
+
+
+    <audio data-key="65" src="시작.mp3"></audio> <!--실행할 오디오-->
+    <audio data-key="83" src="https://raw.githubusercontent.com/MaeganW/Javascript-Drum-Kit/master/sounds/Saw%20Synth.wav"></audio>
+    <audio data-key="68" src="https://raw.githubusercontent.com/MaeganW/Javascript-Drum-Kit/master/sounds/BlastHat.wav"></audio>
+    <audio data-key="70" src="https://raw.githubusercontent.com/MaeganW/Javascript-Drum-Kit/master/sounds/BlankPerc.wav"></audio>
+    <audio data-key="71" src="https://raw.githubusercontent.com/MaeganW/Javascript-Drum-Kit/master/sounds/Tom.wav"></audio>
+    <audio data-key="72" src="https://raw.githubusercontent.com/MaeganW/Javascript-Drum-Kit/master/sounds/BenjaminSnare.wav"></audio>
+    <audio data-key="74" src="https://raw.githubusercontent.com/MaeganW/Javascript-Drum-Kit/master/sounds/LipPerc.wav"></audio>
+    <audio data-key="75" src="https://raw.githubusercontent.com/MaeganW/Javascript-Drum-Kit/master/sounds/OldKick2.wav"></audio>
+    <audio data-key="76" src="https://raw.githubusercontent.com/MaeganW/Javascript-Drum-Kit/master/sounds/BoomKick2.wav"></audio>
+<!-- partial -->
+  <script  src="./script.js"></script>
+  </div>
+  <script src="./stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js.다운로드", color=red></script>
+  <script src="./gsap.min.js.다운로드"></script>
+  <script id="rendered-js">
+    var tl = gsap.timeline({ repeat: -1, repeatDelay: 3 });
+    tl.set(".word.in, .word.too, .word.deep", { opacity: 0 });
+
+    const bgColor = "hsl(190, 100%, 75%)";
+
+// Lines
+tl.fromTo(
+  ".bottom-side",
+  {
+    width: 0,
+    background: bgColor,
+    immediateRender: false,
+    autoRound: false },
+
+    {
+      duration: 1.7,
+      width: "100%",
+      background: bgColor });
+
+
+tl.fromTo(
+  ".left-side",
+  {
+    height: 0,
+    background: bgColor,
+    immediateRender: false,
+    autoRound: false },
+
+    {
+      duration: 1.7,
+      height: "100%",
+      background: bgColor,
+      delay: -1.7 });
+
+
+
+// TOO
+tl.fromTo(
+  ".text1 .word.in",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: 0.6 });
+
+tl.fromTo(
+  ".text2 .word.in",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.3 });
+
+tl.fromTo(
+  ".text3 .word.in",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text4 .word.in",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text5 .word.in",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text6 .word.in",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text7 .word.in",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+
+// TOO
+tl.fromTo(".text1 .word.too", { opacity: 0 }, { duration: 0.5, opacity: 1 });
+tl.fromTo(
+  ".text2 .word.too",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.3 });
+
+tl.fromTo(
+  ".text3 .word.too",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text4 .word.too",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text5 .word.too",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text6 .word.too",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text7 .word.too",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+
+// DEEP
+
+tl.fromTo(".text1 .word.deep", { opacity: 0 }, { duration: 0.5, opacity: 1 });
+
+tl.fromTo(
+  ".text2 .word.deep",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.3 });
+
+tl.fromTo(
+  ".text3 .word.deep",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text4 .word.deep",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text5 .word.deep",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text6 .word.deep",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text7 .word.deep",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+
+// Lines
+tl.fromTo(
+  ".bottom-side",
+  {
+    width: 0,
+    background: bgColor,
+    immediateRender: false,
+    autoRound: false },
+
+    {
+      duration: 1.7,
+      width: "100%",
+      background: bgColor });
+
+
+tl.fromTo(
+  ".left-side",
+  {
+    height: 0,
+    background: bgColor,
+    immediateRender: false,
+    autoRound: false },
+
+    {
+      duration: 1.7,
+      height: "100%",
+      background: bgColor,
+      delay: -1.7 });
+
+
+
+// TOO
+tl.fromTo(
+  ".text1 .word.in",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: 0.6 });
+
+tl.fromTo(
+  ".text2 .word.in",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.3 });
+
+tl.fromTo(
+  ".text3 .word.in",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text4 .word.in",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text5 .word.in",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text6 .word.in",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text7 .word.in",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+
+// TOO
+tl.fromTo(".text1 .word.too", { opacity: 0 }, { duration: 0.5, opacity: 1 });
+tl.fromTo(
+  ".text2 .word.too",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.3 });
+
+tl.fromTo(
+  ".text3 .word.too",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text4 .word.too",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text5 .word.too",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text6 .word.too",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text7 .word.too",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+
+// DEEP
+
+tl.fromTo(".text1 .word.deep", { opacity: 0 }, { duration: 0.5, opacity: 1 });
+
+tl.fromTo(
+  ".text2 .word.deep",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.3 });
+
+tl.fromTo(
+  ".text3 .word.deep",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text4 .word.deep",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text5 .word.deep",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text6 .word.deep",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+tl.fromTo(
+  ".text7 .word.deep",
+  { opacity: 0 },
+  { duration: 1.3, opacity: 1, delay: -1.2 });
+
+
+// Rotate
+tl.to(".text", 1, { transform: "rotate(-20deg) skew(0deg, 0deg)", delay: 0.5 });
+
+// Fade Out
+tl.to(".text1, .text2", 0.6, { opacity: 0, delay: 1.2 });
+tl.to(".text3", 0.6, { opacity: 0, delay: -0.5 });
+tl.to(".text4", 0.6, { opacity: 0, delay: -0.5 });
+tl.to(".text5", 0.6, { opacity: 0, delay: -0.5 });
+tl.to(".text6", 0.6, { opacity: 0, delay: -0.5 });
+tl.to(".text7", 0.6, { opacity: 0, delay: -0.5 });
+//# sourceURL=pen.js
+
+</script>
+
+
+
+
+</body></html>
